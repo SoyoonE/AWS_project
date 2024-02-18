@@ -8,8 +8,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
 
 @RunWith(SpringRunner.class)
 // 테스트 진행할 때 JUnit에 내장된 실행자 외에 다른 실행자를 실행시킨다.
@@ -35,6 +35,19 @@ public class HelloControllerTest {
         mvc.perform(get("/hello"))           // 주소(/hello)로 HTTP GET 요청함. (체이닝 되어 아래 다른 검증을 이어서 할 수 있음.)
                 .andExpect(status().isOk())             // HTTP Status 검증. (200, 404 ...)
                 .andExpect(content().string(hello));    // mvc.perform 결과 검증. hello가 리턴되면 테스트가 잘 되는것!
+    }
+
+    @Test
+    public void helloDto가_리턴된다() throws Exception {
+        String name = "hello";
+        int amount = 10000;
+
+        mvc.perform(get("/hello/dto")
+                .param("name", name)
+                .param("amount",String.valueOf(amount)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is(name)))
+                .andExpect(jsonPath("$.amount", is(amount)));
     }
 }
 
