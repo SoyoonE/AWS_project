@@ -26,6 +26,9 @@ repositories {
 
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.projectlombok:lombok')
+    //implementation('org.projectlombok:lombok')
+    //gradle 5.x 버전 이상부터는 아래 2줄로 작성해야함.
+    compileOnly ('org.projectlombok:lombok:1.18.20')
+    annotationProcessor ('org.projectlombok:lombok:1.18.20')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
