@@ -25,10 +25,20 @@ repositories {
 }
 
 dependencies {
+    // springboot 의존성 주입
     implementation('org.springframework.boot:spring-boot-starter-web')
-    //implementation('org.projectlombok:lombok')
-    //gradle 5.x 버전 이상부터는 아래 2줄로 작성해야함.
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+    // lombok 의존성 주입
+    // implementation('org.projectlombok:lombok')
+    // gradle 5.x 버전 이상부터는 아래 2줄로 작성해야함.
     compileOnly ('org.projectlombok:lombok:1.18.20')
     annotationProcessor ('org.projectlombok:lombok:1.18.20')
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+    // JPA 의존성 주입
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('com.h2database:h2')
+    // h2 란 인메모리 관계형DB
+    // 별도설치 필요없음, 메모리로 실행. 어플리케이션을 재시작할때마다 초기화되기 때문에 테스트용도로 사용
+
 }
