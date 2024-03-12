@@ -41,4 +41,7 @@ dependencies {
     // h2 란 인메모리 관계형DB
     // 별도설치 필요없음, 메모리로 실행. 어플리케이션을 재시작할때마다 초기화되기 때문에 테스트용도로 사용
 
+    // 머스테치 의존성 주입
+    implementation('org.springframework.boot:spring-boot-starter-mustache')
+
 }
